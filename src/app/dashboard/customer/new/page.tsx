@@ -14,7 +14,7 @@ export default async function NewCustomer() {
 
   return (
     <Container>
-      <main className="w-full flex flex-col gap-12 items-start mt-6">
+      <main className="w-full flex flex-col gap-12 items-start mt-2">
         <div className="flex items-center gap-4">
           <Link
             href={"/dashboard/customer"}

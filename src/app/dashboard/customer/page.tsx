@@ -31,18 +31,24 @@ export default async function Customer() {
             Novo cliente
           </Link>
         </div>
-        <section className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-5 mt-6">
-          {customers.map((customer) => (
-            <CardCustomer
-              address={customer.address}
-              email={customer.email}
-              id={customer.id}
-              name={customer.name}
-              phone={customer.phone}
-              key={customer.id}
-            />
-          ))}
-        </section>
+        {customers.length === 0 ? (
+          <p className="mt-4 font-light text-lg">
+            Você não cadastrou nenhum cliente!
+          </p>
+        ) : (
+          <section className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-5 mt-6">
+            {customers.map((customer) => (
+              <CardCustomer
+                address={customer.address}
+                email={customer.email}
+                id={customer.id}
+                name={customer.name}
+                phone={customer.phone}
+                key={customer.id}
+              />
+            ))}
+          </section>
+        )}
       </main>
     </Container>
   );
