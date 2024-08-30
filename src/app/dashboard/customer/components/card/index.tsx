@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { api } from "@/lib/api";
 import { useRouter } from "next/navigation";
+import ModalConfirmDelete from "../modal";
 
 interface CardCustomerProps {
   name: string;
@@ -22,6 +23,8 @@ const CardCustomer = ({
 }: CardCustomerProps) => {
   const router = useRouter();
 
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
   async function handleDeleteCustomer() {
     try {
       await api.delete("/api/customer", {
@@ -33,37 +36,47 @@ const CardCustomer = ({
       router.refresh();
     } catch (error) {
       console.error("Error deleting customer:", error);
+    } finally {
+      setOpenModal(false); // Fecha o modal após a exclusão
     }
   }
 
   return (
-    <article
-      className="flex flex-col items-start bg-gray-100 border-2 p-2 gap-2 hover:scale-105 duration-300 "
-      key={id}
-    >
-      <h2>
-        <span className="font-bold">Nome:</span> {name}
-      </h2>
-      <p>
-        <span className="font-bold">Email:</span> {email}
-      </p>
-      <p>
-        <span className="font-bold">Telefone:</span> {phone}
-      </p>
-
-      {address && (
-        <p>
-          <span className="font-bold">Endereço:</span> {address}
-        </p>
-      )}
-
-      <button
-        className="bg-red-500 py-1 px-3 rounded-md text-white hover:bg-red-600 duration-300"
-        onClick={handleDeleteCustomer}
+    <main className="relative">
+      <article
+        className="flex flex-col items-start bg-gray-100 border-2 p-2 gap-2 hover:scale-105 duration-300 z-20"
+        key={id}
       >
-        Deletar
-      </button>
-    </article>
+        <h2>
+          <span className="font-bold">Nome:</span> {name}
+        </h2>
+        <p>
+          <span className="font-bold">Email:</span> {email}
+        </p>
+        <p>
+          <span className="font-bold">Telefone:</span> {phone}
+        </p>
+
+        {address && (
+          <p>
+            <span className="font-bold">Endereço:</span> {address}
+          </p>
+        )}
+
+        <button
+          className="bg-red-500 py-1 px-3 rounded-md text-white hover:bg-red-600 duration-300"
+          onClick={() => setOpenModal(true)}
+        >
+          Deletar
+        </button>
+      </article>
+      {openModal && (
+        <ModalConfirmDelete
+          onCancel={() => setOpenModal(false)}
+          onConfirm={handleDeleteCustomer}
+        />
+      )}
+    </main>
   );
 };
 

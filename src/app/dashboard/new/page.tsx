@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import prismaClient from "@/lib/prisma";
+import toast from "react-hot-toast";
 
 export default async function NewTicket() {
   const session = await getServerSession(authOptions);
@@ -21,9 +22,9 @@ export default async function NewTicket() {
   async function handleRegisterTicket(formData: FormData) {
     "use server";
 
-    const name = formData.get("name");
-    const description = formData.get("description");
-    const customerId = formData.get("customer");
+    let name = formData.get("name");
+    let description = formData.get("description");
+    let customerId = formData.get("customer");
 
     if (!name || !description || !customerId) {
       return;
@@ -39,6 +40,7 @@ export default async function NewTicket() {
           userId: session?.user.id,
         },
       });
+      toast.success("O chamado foi criado com sucesso!");
     } catch (error) {
       console.error(error);
     }
@@ -107,6 +109,8 @@ export default async function NewTicket() {
               </Link>
             </span>
           )}
+
+          {}
 
           <button
             type="submit"
