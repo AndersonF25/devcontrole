@@ -4,7 +4,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import prismaClient from "@/lib/prisma";
-import toast from "react-hot-toast";
 
 export default async function NewTicket() {
   const session = await getServerSession(authOptions);
@@ -40,10 +39,11 @@ export default async function NewTicket() {
           userId: session?.user.id,
         },
       });
-      toast.success("O chamado foi criado com sucesso!");
     } catch (error) {
       console.error(error);
     }
+
+    redirect("/dashboard");
   }
 
   return (
