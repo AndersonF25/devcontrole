@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { api } from "@/lib/api";
 import { useRouter } from "next/navigation";
+import { ModalContext } from "@/providers/modal";
 import ModalConfirmDelete from "../modal";
 
 interface CardCustomerProps {
@@ -23,7 +24,7 @@ const CardCustomer = ({
 }: CardCustomerProps) => {
   const router = useRouter();
 
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  const { handleOpenModal, openModal, setOpenModal } = useContext(ModalContext);
 
   async function handleDeleteCustomer() {
     try {
@@ -44,7 +45,7 @@ const CardCustomer = ({
   return (
     <main className="relative">
       <article
-        className="flex flex-col items-start bg-gray-100 border-2 p-2 gap-2 hover:scale-105 duration-300 z-20"
+        className="flex flex-col items-start bg-gray-100 border-2 p-2 gap-2 hover:scale-105 duration-300 "
         key={id}
       >
         <h2>
@@ -72,7 +73,7 @@ const CardCustomer = ({
       </article>
       {openModal && (
         <ModalConfirmDelete
-          onCancel={() => setOpenModal(false)}
+          onCancel={handleOpenModal}
           onConfirm={handleDeleteCustomer}
         />
       )}

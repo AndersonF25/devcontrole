@@ -2,7 +2,7 @@ import React from "react";
 
 interface ModalConfirmDeleteProps {
   onCancel: () => void;
-  onConfirm: () => void;
+  onConfirm?: () => void;
 }
 
 const ModalConfirmDelete = ({
