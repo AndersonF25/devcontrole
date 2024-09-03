@@ -24,7 +24,7 @@ export default async function DashBoard() {
   });
 
   return (
-    <main className="w-full h-full mt-2 mb-4">
+    <main className="w-full h-full mt-2 mb-4 ">
       <Container>
         <div className="w-full flex items-center justify-between">
           <h1 className="font-extrabold text-3xl">Chamados</h1>
@@ -43,9 +43,9 @@ export default async function DashBoard() {
             <thead>
               <tr>
                 <th className="font-bold text-left ">CLIENTE</th>
-                <th className="font-bold text-left">CADASTRO</th>
+                <th className="font-bold text-left">DATA</th>
                 <th className="font-bold text-left">STATUS</th>
-                <th className="font-bold text-left">#</th>
+                <th className="font-bold text-left">AÇÕES</th>
               </tr>
             </thead>
             <tbody>

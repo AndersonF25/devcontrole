@@ -8,6 +8,7 @@ import { api } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { ModalContext } from "@/providers/modal";
+import { Tooltip } from "react-tooltip";
 
 interface TicketItemProps {
   ticket: TicketProps;
@@ -61,22 +62,33 @@ const TicketItem = ({ customer, ticket }: TicketItemProps) => {
           </td>
           <td className="pl-2 table-cell">
             <button onClick={handleChangeStatus}>
-              <FiCheckCircle
-                size={24}
-                color="#303030cc"
-                title={ticket.status === "Aberto" ? "Finalizar chamado" : ""}
-              />
+              <a
+                data-tooltip-id="my-tooltip"
+                data-tooltip-content={
+                  ticket.status === "Aberto"
+                    ? "Finalizar chamado"
+                    : "Chamado finalizado"
+                }
+                data-tooltip-variant={
+                  ticket.status === "Aberto" ? "success" : "error"
+                }
+              >
+                <FiCheckCircle size={24} color="#303030cc" />
+              </a>
             </button>
             <button className=" ml-2" onClick={handleModal}>
-              <FiInfo
-                size={24}
-                color="#1339e4cc"
-                title="Informações do chamado"
-              />
+              <a
+                data-tooltip-id="my-tooltip"
+                data-tooltip-content="Ver detalhes"
+                data-tooltip-variant="info"
+              >
+                <FiInfo size={24} color="#1339e4cc" />
+              </a>
             </button>
           </td>
         </tr>
       )}
+      <Tooltip id="my-tooltip" />
     </>
   );
 };

@@ -6,10 +6,7 @@ const DashboardHeader = () => {
   return (
     <Container>
       <div className="w-full mt-4 mb-4 bg-slate-600 h-full py-2 rounded-lg text-white flex items-center gap-6 pl-4 ">
-        <Link
-          href={"/dashboard"}
-          className="text-white hover:scale-105 duration-300 "
-        >
+        <Link href={"/dashboard"} className="text-white  ">
           Chamados
         </Link>
         <Link

@@ -3,11 +3,11 @@
 import Link from "next/link";
 import React from "react";
 import { FiLogOut, FiUser, FiLoader, FiLogIn } from "react-icons/fi";
-import { getSession, signIn, signOut, useSession } from "next-auth/react";
-import { GetServerSideProps } from "next";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { MdOutlineDashboard } from "react-icons/md";
 
 const Header = () => {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   async function handleSignIn() {
     await signIn();
@@ -39,7 +39,7 @@ const Header = () => {
         {status === "authenticated" && (
           <div className="flex items-center gap-3">
             <Link href={"/dashboard"} title="dashboard">
-              <FiUser size={25} />
+              <MdOutlineDashboard size={25} />
             </Link>
             <button onClick={handleSignOut} title="logout">
               <FiLogOut size={25} />
@@ -52,5 +52,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
