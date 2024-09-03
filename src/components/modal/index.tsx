@@ -1,10 +1,11 @@
 "use client";
 
 import { ModalContext } from "@/providers/modal";
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 
 const ModalDetailsTicket = () => {
-  const { handleOpenModal, ticketDetails } = useContext(ModalContext);
+  const { handleOpenModal, ticketDetails, openModal } =
+    useContext(ModalContext);
 
   const modalRef = useRef<HTMLDivElement | null>(null);
 
@@ -14,9 +15,19 @@ const ModalDetailsTicket = () => {
     }
   };
 
+  if (openModal) {
+    useEffect(() => {
+      document.body.style.overflow = "hidden";
+
+      return () => {
+        document.body.style.overflow = "auto";
+      };
+    }, []);
+  }
+
   return (
     <section
-      className="absolute bg-gray-900/80 w-full min-h-screen"
+      className="fixed bg-gray-900/80 w-full h-full inset-0"
       onClick={handleModalClick}
     >
       <div className="absolute inset-0 flex items-center justify-center">

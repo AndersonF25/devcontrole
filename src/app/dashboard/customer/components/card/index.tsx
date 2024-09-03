@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { api } from "@/lib/api";
 import { useRouter } from "next/navigation";
-import { ModalContext } from "@/providers/modal";
 import ModalConfirmDelete from "../modal";
 
 interface CardCustomerProps {
@@ -24,7 +23,11 @@ const CardCustomer = ({
 }: CardCustomerProps) => {
   const router = useRouter();
 
-  const { handleOpenModal, openModal, setOpenModal } = useContext(ModalContext);
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const handleOpenModal = () => {
+    setOpenModal(!openModal);
+  };
 
   async function handleDeleteCustomer() {
     try {
@@ -38,7 +41,7 @@ const CardCustomer = ({
     } catch (error) {
       console.error("Error deleting customer:", error);
     } finally {
-      setOpenModal(false); // Fecha o modal após a exclusão
+      setOpenModal(false); // Close the modal after deletion
     }
   }
 

@@ -77,7 +77,7 @@ const FormCustomer = ({ userId }: { userId: string }) => {
         <div className="flex-1">
           <label className="mb-1 font-semibold text-lg">Telefone</label>
           <Input
-            type="number"
+            type="text"
             name="phone"
             placeholder="Exemplo: (52) 9988998XX "
             register={register}

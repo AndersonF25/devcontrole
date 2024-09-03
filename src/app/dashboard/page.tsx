@@ -23,6 +23,12 @@ export default async function DashBoard() {
     orderBy: [{ status: "asc" }, { created_at: "desc" }],
   });
 
+  const customer = await prismaClient.customer.findMany({
+    where: {
+      userId: session.user.id,
+    },
+  });
+
   return (
     <main className="w-full h-full mt-2 mb-4 ">
       <Container>
@@ -36,8 +42,10 @@ export default async function DashBoard() {
           </Link>
         </div>
 
-        {tickets.length === 0 ? (
-          <p>Você não tem nenhum chamado</p>
+        {customer.length === 0 ? (
+          <p className="mt-5 font-normal text-lg">
+            Você não tem nenhum chamado
+          </p>
         ) : (
           <table className="min-w-full my-8 ">
             <thead>

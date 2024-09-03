@@ -19,6 +19,15 @@ export default async function Customer() {
     },
   });
 
+  const tickets = await prismaClient.ticket.findMany({
+    where: {
+      userId: session.user.id,
+    },
+    include: {
+      customer: true,
+    },
+  });
+
   return (
     <Container>
       <main className="w-full">
@@ -45,6 +54,7 @@ export default async function Customer() {
                 name={customer.name}
                 phone={customer.phone}
                 key={customer.id}
+               
               />
             ))}
           </section>

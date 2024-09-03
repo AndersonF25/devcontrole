@@ -61,7 +61,12 @@ const TicketItem = ({ customer, ticket }: TicketItemProps) => {
             </span>
           </td>
           <td className="pl-2 table-cell">
-            <button onClick={handleChangeStatus}>
+            <button
+              onClick={handleChangeStatus}
+              style={{
+                cursor: ticket.status === "Aberto" ? "pointer" : "not-allowed",
+              }}
+            >
               <a
                 data-tooltip-id="my-tooltip"
                 data-tooltip-content={

@@ -27,6 +27,7 @@ const Input = ({
         placeholder={placeholder}
         {...register(name, rules)}
         id={name}
+        autoComplete="off"
       />
       {error && <p className="text-red-500 my-1">{error}</p>}
     </>

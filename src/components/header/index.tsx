@@ -5,6 +5,7 @@ import React from "react";
 import { FiLogOut, FiUser, FiLoader, FiLogIn } from "react-icons/fi";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { MdOutlineDashboard } from "react-icons/md";
+import { Tooltip } from "react-tooltip";
 
 const Header = () => {
   const { status } = useSession();
@@ -31,22 +32,43 @@ const Header = () => {
         )}
 
         {status === "unauthenticated" && (
-          <button onClick={handleSignIn} title="login">
-            <FiLogIn size={25} />
+          <button onClick={handleSignIn}>
+            <a
+              data-tooltip-id="my-tooltip"
+              data-tooltip-content="Entrar"
+              data-tooltip-variant="info"
+            >
+              <FiLogIn size={25} />
+            </a>
           </button>
         )}
 
         {status === "authenticated" && (
           <div className="flex items-center gap-3">
-            <Link href={"/dashboard"} title="dashboard">
-              <MdOutlineDashboard size={25} />
+            <Link href={"/dashboard"} className="flex items-center ">
+              <button className="w-full h-full">
+                <a
+                  data-tooltip-id="my-tooltip"
+                  data-tooltip-content="Acessar dashboard"
+                  data-tooltip-variant="info"
+                >
+                  <MdOutlineDashboard size={27} />
+                </a>
+              </button>
             </Link>
-            <button onClick={handleSignOut} title="logout">
-              <FiLogOut size={25} />
+            <button onClick={handleSignOut}>
+              <a
+                data-tooltip-id="my-tooltip"
+                data-tooltip-content="Sair"
+                data-tooltip-variant="error"
+              >
+                <FiLogOut size={25} />
+              </a>
             </button>
           </div>
         )}
       </div>
+      <Tooltip id="my-tooltip" />
     </header>
   );
 };
