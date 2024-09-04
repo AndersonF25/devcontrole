@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
-import { FiLogOut, FiUser, FiLoader, FiLogIn } from "react-icons/fi";
+import { FiLogOut, FiLoader, FiLogIn } from "react-icons/fi";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { MdOutlineDashboard } from "react-icons/md";
 import { Tooltip } from "react-tooltip";
