@@ -5,7 +5,7 @@ import React from "react";
 const DashboardHeader = () => {
   return (
     <Container>
-      <div className="w-full mt-4 mb-4 bg-slate-600 h-full py-2 rounded-lg text-white flex items-center gap-6 pl-4 ">
+      <div className="w-full mt-4 mb-4 bg-slate-600 h-full py-2 rounded-lg text-white flex items-center gap-6 pl-4  ">
         <Link href={"/dashboard"} className="text-white  ">
           Chamados
         </Link>

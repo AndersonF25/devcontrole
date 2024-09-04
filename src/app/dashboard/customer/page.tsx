@@ -31,7 +31,7 @@ export default async function Customer() {
   return (
     <Container>
       <main className="w-full">
-        <div className="w-full flex items-center justify-between mt-2">
+        <div className="w-full flex items-center justify-between mt-2 flex-wrap-reverse gap-4">
           <h1 className="font-extrabold text-3xl">Meus clientes</h1>
           <Link
             href={"/dashboard/customer/new"}

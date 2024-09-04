@@ -30,9 +30,9 @@ export default async function DashBoard() {
   });
 
   return (
-    <main className="w-full h-full mt-2 mb-4 ">
+    <main className="w-full h-full mt-2 mb-4  ">
       <Container>
-        <div className="w-full flex items-center justify-between">
+        <div className="w-full flex items-center justify-between mb-4">
           <h1 className="font-extrabold text-3xl">Chamados</h1>
           <Link
             href={"/dashboard/new"}
@@ -47,25 +47,35 @@ export default async function DashBoard() {
             Você não tem nenhum chamado
           </p>
         ) : (
-          <table className="min-w-full my-8 ">
-            <thead>
-              <tr>
-                <th className="font-bold text-left ">CLIENTE</th>
-                <th className="font-bold text-left">DATA</th>
-                <th className="font-bold text-left">STATUS</th>
-                <th className="font-bold text-left">AÇÕES</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tickets.map((ticket) => (
-                <TicketItem
-                  key={ticket.id}
-                  ticket={ticket}
-                  customer={ticket.customer}
-                />
-              ))}
-            </tbody>
-          </table>
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    CLIENTE
+                  </th>
+                  <th className="hidden md:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    DATA
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    STATUS
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    AÇÕES
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {tickets.map((ticket) => (
+                  <TicketItem
+                    key={ticket.id}
+                    ticket={ticket}
+                    customer={ticket.customer}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </Container>
     </main>

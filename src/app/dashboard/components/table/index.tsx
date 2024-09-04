@@ -44,9 +44,11 @@ const TicketItem = ({ customer, ticket }: TicketItemProps) => {
     <>
       {ticket.customerId === null ? null : (
         <tr className="bg-zinc-100 h-12 border-b-2 border-b-slate-400 last:border-b-0 hover:bg-zinc-200 duration-300 ">
-          <td className="pl-2 ">{customer?.name}</td>
-          <td>{ticket.created_at?.toLocaleDateString("pt-br")}</td>
-          <td className="h-full overflow-hidden  ">
+          <td className="pl-2">{customer?.name}</td>
+          <td className="hidden md:table-cell">
+            {ticket.created_at?.toLocaleDateString("pt-br")}
+          </td>
+          <td className="h-full overflow-hidden">
             <span
               title={
                 ticket.status === "Aberto"
@@ -55,17 +57,16 @@ const TicketItem = ({ customer, ticket }: TicketItemProps) => {
               }
               className={`p-4 ${
                 ticket.status === "Aberto" ? "bg-green-500" : "bg-red-600"
-              } text-white font-bold  border-b-2 w-28  block text-center`}
+              } text-white font-bold border-b-2 w-28 block text-center`}
             >
               {ticket.status}
             </span>
           </td>
-          <td className="pl-2 table-cell">
+          <td className="pl-2 flex space-x-2">
             <button
               onClick={handleChangeStatus}
-              style={{
-                cursor: ticket.status === "Aberto" ? "pointer" : "not-allowed",
-              }}
+              disabled={ticket.status !== "Aberto"}
+              className="cursor-pointer disabled:cursor-not-allowed "
             >
               <a
                 data-tooltip-id="my-tooltip"
@@ -78,16 +79,16 @@ const TicketItem = ({ customer, ticket }: TicketItemProps) => {
                   ticket.status === "Aberto" ? "success" : "error"
                 }
               >
-                <FiCheckCircle size={24} color="#303030cc" />
+                <FiCheckCircle size={24} color="#303030cc" className="mt-4" />
               </a>
             </button>
-            <button className=" ml-2" onClick={handleModal}>
+            <button onClick={handleModal}>
               <a
                 data-tooltip-id="my-tooltip"
                 data-tooltip-content="Ver detalhes"
                 data-tooltip-variant="info"
               >
-                <FiInfo size={24} color="#1339e4cc" />
+                <FiInfo size={24} color="#1339e4cc" className="mt-4" />
               </a>
             </button>
           </td>
