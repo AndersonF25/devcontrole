@@ -32,8 +32,10 @@ export default async function DashBoard() {
   return (
     <main className="w-full h-full mt-2 mb-4  ">
       <Container>
-        <div className="w-full flex items-center justify-between mb-4">
-          <h1 className="font-extrabold text-3xl">Chamados</h1>
+        <div className="  w-full   sm:flex items-center justify-between mb-4">
+          <h1 className="mb-2 font-bold sm:font-extrabold text-3xl">
+            Chamados
+          </h1>
           <Link
             href={"/dashboard/new"}
             className="bg-blue-500 px-4 py-2 text-white rounded-md hover:bg-blue-700 duration-300"

@@ -4,7 +4,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import prismaClient from "@/lib/prisma";
-import { ButtonRegister } from "@/components/buttonRegister";
 
 export default async function NewTicket() {
   const session = await getServerSession(authOptions);
@@ -71,6 +70,7 @@ export default async function NewTicket() {
             required
             className="w-full border-2 rounded-md px-2 h-11 mb-5"
             name="name"
+            autoComplete="off"
           />
           <label className="mb-1 font-medium text-lg">
             Descreva o problema

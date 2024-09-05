@@ -27,13 +27,13 @@ const ModalDetailsTicket = () => {
 
   return (
     <section
-      className="fixed bg-gray-900/80 w-full h-full inset-0"
+      className="fixed bg-gray-900/80 w-full h-full inset-0 z-10"
       onClick={handleModalClick}
     >
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center z-30">
         <div
           ref={modalRef}
-          className="bg-zinc-100 shadow-lg rounded-md p-5 w-1/2 flex flex-col gap-4"
+          className="bg-zinc-100 w-10/12 sm:bg-zinc-100 shadow-lg rounded-md p-5 z-30 flex flex-col gap-4"
         >
           <div className="flex items-center justify-between">
             <h1 className="font-bold text-2xl">Detalhes do chamado</h1>
