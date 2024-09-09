@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import React from "react";
 import { FiRefreshCcw } from "react-icons/fi";
-import { Tooltip } from "react-tooltip";
 
 const BtnRefresh = () => {
   const router = useRouter();
