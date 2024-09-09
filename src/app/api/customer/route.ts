@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import prismaClient from "@/lib/prisma";
 
+//DELETAR UM CLIENTE!
 export async function DELETE(request: Request) {
   const session = await getServerSession(authOptions);
 
@@ -58,5 +59,27 @@ export async function POST(request: Request) {
       { error: "Failed create new customer" },
       { status: 400 }
     );
+  }
+}
+
+//ROTA PARA PEGAR UM CLIENTE
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const customerEmail = searchParams.get("email");
+
+  if (!customerEmail || customerEmail === "") {
+    return NextResponse.json({ error: "Customer not found!" }, { status: 404 });
+  }
+
+  try {
+    const findCustomer = await prismaClient.customer.findFirst({
+      where: {
+        email: customerEmail,
+      },
+    });
+
+    return NextResponse.json(findCustomer);
+  } catch (error) {
+    return NextResponse.json({ error: "Customer not found!" }, { status: 404 });
   }
 }
